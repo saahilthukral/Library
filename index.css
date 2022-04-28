@@ -1,25 +1,33 @@
 :root{
-    --background: rgba(92, 33, 33, 0.5);
+    --background: rgba(252, 250, 250, 0.849);
 }
-
+input{
+    border: none;
+    background-color: aliceblue;
+    width: 200px;
+}  
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
     margin:0;
-    padding:0;
+    padding:0.125rem;
+    /* text-align: center; */
+    /* background-color: var(--background); */
 
 }
-h1{text-align: center;}
+h1{text-align: center;
+margin: 3vh auto;}
+
 form{
     display: flex;
     flex-direction: column;
 }
 
 button{
-    background-color: rgb(149, 149, 130);
+    background-color: rgb(204, 204, 192);
     border: none;
     border-radius: 5px;
-    padding: 1%;
+    padding: 2%;
 }
 
 table{
@@ -29,4 +37,20 @@ table{
 
 button:active{
     background: rgb(207, 162, 162);
+}
+#grid{
+    display: grid;
+    /* grid-template-columns:repeat(auto-fit, minmax(100px, 1fr),4); */
+    grid-template-columns:repeat(1fr 1fr 1fr 1fr);
+
+    /* grid */
+}
+#container{
+    grid-column-start: -3;
+
+}
+#container2{
+    grid-column-start: -2;
+    grid-column-end: 2;
+
 }

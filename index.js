@@ -1,4 +1,7 @@
+const grid = document.querySelector("#grid")
 const container = document.querySelector("#container");
+const container2 = document.querySelector("#container2");
+
 const button = document.createElement("button");
 const button2 = document.createElement("button");
 
@@ -10,7 +13,18 @@ const input = document.querySelectorAll("input");
 
 const cardContainer = document.createElement("table");
 
+container.style.backgroundColor = "skyblue";
+container.style.padding = "1rem";
 
+form.style.marginBottom = "10px"
+table.style.backgroundColor = "beige";
+table.style.padding = "2vw";
+
+container2.style.backgroundColor = "beige"
+container2.style.gridColumnStart = -2;
+container2.style.gridColumnEnd = 4;
+
+grid.style.height = "100vh";
 
 button.textContent = "ADD BOOK";
 button2.textContent = "Read/Unread";
@@ -29,13 +43,14 @@ function Book(){
 Book.prototype.read = "no";
 
 
-const th1 = document.createElement("th");
+// const th1 = document.createElement("th");
 
 
 let j;
 const ideas = ["Name", "Author", "Pages", "Year", "Read Book", "Remove books"]
 for(j in ideas){
     const th = document.createElement("th");
+    th.style.width = "auto";
     th.textContent = ideas[j];
     console.log(j);
     table.appendChild(th);
@@ -77,10 +92,17 @@ button.addEventListener("click", () => {
     if(input[2].value == ""){
         book.pages = "Unknown";
     }
+    if(Number(input[2].value) <= 0){
+        book.year = "0";
+    }
     
     if(input[3].value == ""){
         book.year = "Unknown";
     }
+    else if(Number(input[3].value) <= 0){
+        book.year = "0";
+    }
+    
     // if(input[4].value == ""){
     //     book.name = "unknown";
     // }
@@ -100,7 +122,7 @@ button.addEventListener("click", () => {
         // elements.textContent = "yo";
 
         p.appendChild(elements);
-        remove.addEventListener("click", () => {p.remove });
+        // remove.addEventListener("click", () => {p.remove});
         // elements.classList.add = `c${i}`;
         switch(i){
             case 0:
@@ -116,31 +138,37 @@ button.addEventListener("click", () => {
                 elements.textContent = book.year;
                 break;
             case 4:
-                elements.classList.add("td");
-                elements.textContent = "Unread";
+                elements.appendChild(read);
+                read.style.width = "120px";
+                read.style.padding = "1 rem";
+
+                read.textContent = "Change status";
+                read.addEventListener("click", () => { 
+                })
+                
+                read.addEventListener("click", () => {
+                    if(read.textContent == "Unread" || read.textContent == "Click to change status" ){
+                        read.textContent = "Read";
+                        // unread.appendChild(read);
+                    }
+                    else if(read.textContent = "Read"){
+                        read.textContent = "Unread";
+                        // unread.appendChild(read);
+                    }     
+
+                })
                 // elements.textContent = "No \ ";
-                
-                
+
                 break;
             case 5:
+                remove.style.width = "120px";
+                remove.style.padding = "1 rem";
                 elements.appendChild(remove);
                 remove.addEventListener("click", ()=>{
                     p.remove();
                 })
 
-                elements.appendChild(read);
-                read.addEventListener("click", () => {
-                    let unread = document.querySelector(".td");
-                    if(unread.textContent == "Unread"){
-                        unread.textContent = "Read";
-                        // unread.appendChild(read);
-                    }
-                    else if(unread.textContent = "Read"){
-                        unread.textContent = "Unread";
-                        // unread.appendChild(read);
-                    }     
-
-                })
+                
 
                 break;
             default:
@@ -161,4 +189,4 @@ button.addEventListener("click", () => {
 })
 
 container.appendChild(button);
-container.appendChild(table);
+container2.appendChild(table);
